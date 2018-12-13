@@ -1,0 +1,15 @@
+Package: wordgame
+Type: Package
+Title: A word game
+Version: 0.1.0
+Author: Stu Harty
+Maintainer: Stu Harty <sbharty@gmail.com>
+Description: A word game
+    Find all words four letters from a group of seven letters
+License: First amendment
+Encoding: UTF-8
+LazyData: true
+Imports: 
+    tidyverse
+URL: https://github.com/sbha/wordgame
+BugReports: https://github.com/sbha/wordgame/issues

@@ -1,0 +1,67 @@
+# put together as self contained package
+# set rules so that all accepted words must contain one letter
+# namespace to handle tidyverse   # http://r-pkgs.had.co.nz/namespace.html#imports
+# do all sub functions need to be in the namespace, or only main
+# loading... message when generateing the data set
+# error message if the dataset can't load
+# accumulated point levels
+# block already accepted words
+# new name: word game, letter game
+# double points for words that use all seven letters
+# sort option for word display - alpha rather than the default by length and alpha
+# group 7 letter words by difficulty
+
+# non-vowel base letter:
+# choose a random non-vowel base or random over a certain threshold?
+
+
+
+# Rules:
+
+#
+# find words with seven total letters and seven unique letters
+# subsets of the all words of four letters or more that can be derived from the seven letter word
+# vowel count
+# 2 vowels (or more?)
+# unique
+
+# test for words that appear in a corpus
+
+# select letter that must appear in every word
+# select 7 letter unique anograms
+# check for all 4-6 letter unique anograms that are a subset of the 7 letter unique anogram
+
+# store correct entries
+# store score
+# display stored correct entries
+
+# use only seven letter words with x number of derivaties
+
+
+
+# https://stackoverflow.com/questions/11095992/generating-all-distinct-permutations-of-a-list-in-r
+# https://github.com/dwyl/english-words
+# https://github.com/dwyl/english-words/blob/master/words.txt
+# https://www.wordfrequency.info/free.asp
+# http://www.speech.cs.cmu.edu/cgi-bin/cmudict
+# https://stackoverflow.com/questions/43033178/better-way-to-shuffle-elements-of-a-string-in-r
+# https://stackoverflow.com/questions/18409338/r-shuffle-a-list-preserving-element-sizes
+# https://stackoverflow.com/questions/35503225/how-to-perform-shuffle-on-a-list-of-words
+# https://stackoverflow.com/questions/14410050/identify-which-objects-of-list-are-contained-subset-of-in-another-list-in-r
+#
+
+# https://github.com/first20hours/google-10000-english
+# http://norvig.com/ngrams/
+
+# https://stackoverflow.com/questions/22325719/r-base-function-to-sort-vector-of-strings-based-on-length
+
+#words <- '/usr/share/dict/words'
+#words <- '/Users/stuartharty/Downloads/google-10000-english-master/google-10000-english-no-swears.txt'
+#file.exists(words)
+
+#words <- 'https://raw.githubusercontent.com/dwyl/english-words/master/words.txt'
+#words_url <- 'https://raw.githubusercontent.com/first20hours/google-10000-english/master/google-10000-english-no-swears.txt'
+#words_url <- 'http://norvig.com/ngrams/count_1w.txt'
+# words <- read.table(words, comment.char = "", quote = "\"")
+#df_words <- data.frame(read.csv(words, header = FALSE, stringsAsFactors = FALSE, quote = ""))
+#df_words <- data.frame(read.csv(tex, header = FALSE, stringsAsFactors = FALSE))
