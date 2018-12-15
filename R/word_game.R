@@ -5,11 +5,13 @@
 ### Import data ###
 
 words_url <- 'http://norvig.com/ngrams/TWL06.txt'
-
 words <- read.table(words_url)
 df_words <- data.frame(words[,1], stringsAsFactors = FALSE) %>% tbl_df()
 names(df_words) <- 'word'
 head(df_words)
+
+#df_words %>% write.csv('df_words.csv', row.names = FALSE)
+#df_words <- readr::read_csv('/Users/stuartharty/Documents/data/df_words.csv')
 
 ### Functions ###
 # sort letters in a string
@@ -57,6 +59,8 @@ score_keeper <- function(word){
   }
 }
 
+# https://stackoverflow.com/questions/44702134/r-error-cannot-change-value-of-locked-binding-for-df
+
 # score display
 score_display <- function(){
   list(
@@ -65,6 +69,10 @@ score_display <- function(){
     },
     words = function(){
       cat(df_score$accepted_word, sep = '\n')
+      #print(df_score$accepted_word, n =)
+    },
+    cnt = function(){
+      length(df_score$accepted_word)
       #print(df_score$accepted_word, n =)
     }
   )
@@ -132,13 +140,14 @@ shuffle <- function(){
 
 wordgame <- function(x){
   #if (!is.character(x)) stop('You must enter a word')
+  x <- tolower(x)
   if (nchar(x) < 4){
     #stop('Words must contain at least 4 letters')
     print('Words must contain at least 4 letters')
   } else if (!str_detect(x, base_letter)) {
     print(paste0("Sorry, the word must contain the letter '", base_letter, "'."))
   } else if (x %in% df_score$accepted_word){
-    print('Sorry, that word has alredy been used.')
+    print('Sorry, that word has already been used.')
   } else if (x %in% df_derivatives$word){
     pts <- ano_pointr(x)
     #word_list <<- create_word_list()
@@ -152,9 +161,14 @@ wordgame <- function(x){
 
 
 #ano_shuffler(word7, base_letter)
-wordgame('seekers')
+wordgame('staff')
 
-shuffle()
+
 results <- score_display()
 results$pts()
+results$cnt()
 results$words()
+shuffle()
+
+
+
