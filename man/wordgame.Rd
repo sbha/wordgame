@@ -1,14 +1,14 @@
-\name{spellingb}
-\alias{spellingb}
+\name{wordgame}
+\alias{wordgame}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+Wood GAme
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+Find all words four letters or more from a group of seven letters
 }
 \usage{
-spellingb(x)
+wordgame(x)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
