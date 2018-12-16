@@ -50,6 +50,7 @@ df_score <- data_frame(accepted_word = as.character(),
                        points = as.numeric(),
                        chars = as.numeric())
 
+
 score_keeper <- function(word){
   if (!word %in% df_score$accepted_word) {
     df_score <<- bind_rows(df_score, data_frame(accepted_word = word,
@@ -59,23 +60,39 @@ score_keeper <- function(word){
   }
 }
 
+
 # https://stackoverflow.com/questions/44702134/r-error-cannot-change-value-of-locked-binding-for-df
 
 # score display
 score_display <- function(){
   list(
-    pts = function(){
+    points = function(){
       sum(df_score$points)
     },
     words = function(){
       cat(df_score$accepted_word, sep = '\n')
       #print(df_score$accepted_word, n =)
     },
-    cnt = function(){
+    count = function(){
       length(df_score$accepted_word)
+      #print(df_score$accepted_word, n =)
+    },
+    percent_words = function(){
+      round(length(df_score$accepted_word)/length(df_derivatives$word) * 100, 1)
+      #print(df_score$accepted_word, n =)
+    },
+    percent_points = function(){
+      round(sum(df_score$points) / sum(df_derivatives$points) * 100, 1)
       #print(df_score$accepted_word, n =)
     }
   )
+}
+
+give_up <- function(){
+  df_derivatives %>% 
+    filter(!word %in% df_score$accepted_word) %>% 
+    select(word) %>% 
+    print(n = Inf)
 }
 
 
@@ -105,7 +122,7 @@ df_words %>%
   #filter(nchar(vowels_unique) > 1) %>%
   ungroup()
 
-head(df_words)
+#head(df_words)
 
 # find words that can be used for the base
 df_words7 <-
@@ -127,7 +144,8 @@ df_words %>%
   rowwise() %>%
   mutate(sub_word = ano_subset(word7, ano_unique) == chars_unique) %>%
   filter(sub_word == TRUE) %>%
-  filter(str_detect(ano_unique, base_letter))
+  filter(str_detect(ano_unique, base_letter)) %>% 
+  mutate(points = ano_pointr(word))
 
 
 
@@ -153,6 +171,7 @@ wordgame <- function(x){
     #word_list <<- create_word_list()
     #word_list$words(x)
     score_keeper(x)
+    #df_score <<- score_keeper(df_score, x)
     print(paste0('yes! +', pts))
   } else {
     print(paste0("Sorry, '", x, "' does not work."))
@@ -161,12 +180,13 @@ wordgame <- function(x){
 
 
 #ano_shuffler(word7, base_letter)
-wordgame('staff')
-
+wordgame('fester')
 
 results <- score_display()
-results$pts()
-results$cnt()
+results$points()
+results$count()
+results$percent_words()
+results$percent_points()
 results$words()
 shuffle()
 
