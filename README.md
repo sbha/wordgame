@@ -13,9 +13,13 @@ shuffle()
 [1] "p" "t" "i" "d" "n" "e" "s"
 
 # When you have a word idea, test it to see if it works:
-wordgame('pendent')
+wordgame('insipid')
 [1] "yes! +4"
 # Four letter words are worth 1 point, and each additional letter is worth another point. 
+
+# Non-words are not accepted:
+wordgame('sipid')
+[1] "Sorry, 'sipid' does not work."
 
 # Words less than four letters are not accepted:
 wordgame('pie')
