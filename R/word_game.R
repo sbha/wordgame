@@ -73,7 +73,7 @@ score_display <- function(){
       cat(df_score$accepted_word, sep = '\n')
       #print(df_score$accepted_word, n =)
     },
-    count = function(){
+    word_count = function(){
       length(df_score$accepted_word)
       #print(df_score$accepted_word, n =)
     },
@@ -95,6 +95,10 @@ give_up <- function(){
     print(n = Inf)
 }
 
+
+shuffle <- function(){
+  ano_shuffler(word7, base_letter)
+}
 
 
 ### Organize the data ###
@@ -145,50 +149,50 @@ df_words %>%
   mutate(sub_word = ano_subset(word7, ano_unique) == chars_unique) %>%
   filter(sub_word == TRUE) %>%
   filter(str_detect(ano_unique, base_letter)) %>% 
-  mutate(points = ano_pointr(word))
+  mutate(points = ano_pointr(word)) %>% 
+  #mutate(bonus = chars_total == 7 & chars_unique == 7)
+  mutate(bonus = chars_unique >= 7) %>% 
+  mutate(points = if_else(isTRUE(bonus), points * 2, points)) %>% 
+  mutate(guessed = FALSE) %>% 
+  ungroup() 
+  
 
 
 
 ### Game play ###
 
-shuffle <- function(){
-  #letter_base <- 'i'
-  ano_shuffler(word7, base_letter)
-}
-
 wordgame <- function(x){
   #if (!is.character(x)) stop('You must enter a word')
   x <- tolower(x)
   if (nchar(x) < 4){
-    #stop('Words must contain at least 4 letters')
     print('Words must contain at least 4 letters')
   } else if (!str_detect(x, base_letter)) {
     print(paste0("Sorry, the word must contain the letter '", base_letter, "'."))
   } else if (x %in% df_score$accepted_word){
     print('Sorry, that word has already been used.')
   } else if (x %in% df_derivatives$word){
-    pts <- ano_pointr(x)
-    #word_list <<- create_word_list()
-    #word_list$words(x)
+    #pts <- ano_pointr(x)
+    pts <- df_derivatives$points[df_derivatives$word == x]
     score_keeper(x)
-    #df_score <<- score_keeper(df_score, x)
-    print(paste0('yes! +', pts))
+    if (isTRUE(df_derivatives$bonus[df_derivatives$word == x])){
+      print(paste0('All seven letters - 2x bonus! +', pts))
+    } else {
+      print(paste0('yes! +', pts))
+    }
   } else {
     print(paste0("Sorry, '", x, "' does not work."))
   }
 }
 
 
-#ano_shuffler(word7, base_letter)
-wordgame('fester')
+wordgame('')
 
 results <- score_display()
 results$points()
-results$count()
+results$word_count()
 results$percent_words()
 results$percent_points()
 results$words()
 shuffle()
-
 
 
