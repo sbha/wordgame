@@ -17,7 +17,7 @@ wordgame('pendent')
 [1] "yes! +4"
 # Four letter words are worth 1 point, and each additional letter is worth another point. 
 
-# Words must less than four letters are not accepted:
+# Words less than four letters are not accepted:
 wordgame('pie')
 [1] "Words must contain at least 4 letters"
 
@@ -36,13 +36,13 @@ wordgame('stipend')
 # Successful entries are stored and points are tallied:
 results$points()
 [1] 235
-> results$word_count()
+results$word_count()
 [1] 75
-> results$percent_words()
+results$percent_words()
 [1] 26
-> results$percent_points()
+results$percent_points()
 [1] 21.1
-> results$words()
+results$words()
 independents
 independent
 dependents
