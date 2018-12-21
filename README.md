@@ -30,7 +30,7 @@ wordgame('tied')
 [1] "Sorry, the word must contain the letter 'p'."
 
 # Succcessful entries are stored and can't be used again:
-wordgame('pendent')
+wordgame('insipid')
 [1] "Sorry, that word has already been used."
 
 # Bonus points are given to words that use all seven letters:
