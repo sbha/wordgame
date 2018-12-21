@@ -175,7 +175,7 @@ wordgame <- function(x){
     pts <- df_derivatives$points[df_derivatives$word == x]
     score_keeper(x)
     if (isTRUE(df_derivatives$bonus[df_derivatives$word == x])){
-      print(paste0('All seven letters - 2x bonus! +', pts))
+      print(paste0('All seven letters - 2x bonus points! +', pts))
     } else {
       print(paste0('yes! +', pts))
     }
