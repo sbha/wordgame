@@ -25,6 +25,10 @@ wordgame('sipid')
 wordgame('pie')
 [1] "Words must contain at least 4 letters"
 
+# Words that contain letters not in the 7 are not accepted:
+wordgame('present')
+[1] "Sorry, 'present' does not work."
+
 # Words that do not contain the first letter are not accepted:
 wordgame('tied')
 [1] "Sorry, the word must contain the letter 'p'."
