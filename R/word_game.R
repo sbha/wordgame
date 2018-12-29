@@ -214,7 +214,7 @@ restart <- function(){
 }
 
 
-wordgame('hampers')
+wordgame('')
 
 results <- score_display()
 results$points()

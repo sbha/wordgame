@@ -65,5 +65,7 @@ tips
 # Throw in the towel and print the words that you haven't guessed:
 give_up()
 
+# Start a new game:
+restart()
 ```
 
