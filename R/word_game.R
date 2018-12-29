@@ -39,7 +39,7 @@ ano_shuffler <- function(word, letter){
 }
 
 # point counter
-ano_pointr <- function(x){
+ano_pointer <- function(x){
   if (nchar(x) == 4) pts = 1
   else pts = nchar(x) - 3
   return(pts)
@@ -54,7 +54,7 @@ df_score <- data_frame(accepted_word = as.character(),
 score_keeper <- function(word){
   if (!word %in% df_score$accepted_word) {
     df_score <<- bind_rows(df_score, data_frame(accepted_word = word,
-                                                points = ano_pointr(word),
+                                                points = ano_pointer(word),
                                                 chars = nchar(word))) %>%
       arrange(desc(chars), accepted_word)
   }
@@ -149,7 +149,7 @@ df_words %>%
   mutate(sub_word = ano_subset(word7, ano_unique) == chars_unique) %>%
   filter(sub_word == TRUE) %>%
   filter(str_detect(ano_unique, base_letter)) %>% 
-  mutate(points = ano_pointr(word)) %>% 
+  mutate(points = ano_pointer(word)) %>% 
   #mutate(bonus = chars_total == 7 & chars_unique == 7)
   mutate(bonus = chars_unique >= 7) %>% 
   mutate(points = if_else(isTRUE(bonus), points * 2, points)) %>% 
@@ -171,7 +171,7 @@ wordgame <- function(x){
   } else if (x %in% df_score$accepted_word){
     print('Sorry, that word has already been used.')
   } else if (x %in% df_derivatives$word){
-    #pts <- ano_pointr(x)
+    #pts <- ano_pointer(x)
     pts <- df_derivatives$points[df_derivatives$word == x]
     score_keeper(x)
     if (isTRUE(df_derivatives$bonus[df_derivatives$word == x])){
@@ -185,7 +185,7 @@ wordgame <- function(x){
 }
 
 
-wordgame('')
+wordgame('snails')
 
 results <- score_display()
 results$points()
@@ -194,5 +194,5 @@ results$percent_words()
 results$percent_points()
 results$words()
 shuffle()
-
+give_up()
 

@@ -4,7 +4,7 @@ Find all words four letters or more from a group of seven letters
 
 ## Usage
 ```r
-# Display the 7 letters available. The first letter displayed must be used. 
+# Display the 7 letters available. The first letter displayed does not shuffle and must be used:
 shuffle()
 [1] "p" "s" "n" "i" "t" "e" "d"
 
@@ -62,4 +62,8 @@ pits
 sped
 tips
 
+# Throw in the towel and print the words that you haven't guessed:
+give_up()
+
 ```
+
