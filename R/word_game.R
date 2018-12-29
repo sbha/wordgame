@@ -175,7 +175,7 @@ wordgame <- function(x){
     pts <- df_derivatives$points[df_derivatives$word == x]
     score_keeper(x)
     if (isTRUE(df_derivatives$bonus[df_derivatives$word == x])){
-      print(paste0('All seven letters - 2x bonus points! +', pts))
+      print(paste0('Panagram! All seven letters - 2x bonus points! +', pts)) # panogram
     } else {
       print(paste0('yes! +', pts))
     }
@@ -184,8 +184,37 @@ wordgame <- function(x){
   }
 }
 
+restart <- function(){
+  # are you sure
+  df_score <<- data_frame(accepted_word = as.character(),
+                          points = as.numeric(),
+                          chars = as.numeric())
+  
+  word7 <<- df_words7$ano[sample(nrow(df_words7), 1)]
+  
+  word_non_vowel <<- str_remove_all(word7, '[[aeiouy]]')
+  word_non_vowel <<- strsplit(word_non_vowel, '')[[1]]
+  base_letter <<- word_non_vowel[sample(length(word_non_vowel), 1)]
+  
+  df_derivatives <<-
+    df_words %>%
+    rowwise() %>%
+    mutate(sub_word = ano_subset(word7, ano_unique) == chars_unique) %>%
+    filter(sub_word == TRUE) %>%
+    filter(str_detect(ano_unique, base_letter)) %>% 
+    mutate(points = ano_pointer(word)) %>% 
+    #mutate(bonus = chars_total == 7 & chars_unique == 7)
+    mutate(bonus = chars_unique >= 7) %>% 
+    mutate(points = if_else(isTRUE(bonus), points * 2, points)) %>% 
+    mutate(guessed = FALSE) %>% 
+    ungroup() 
+  
+  results <<- score_display()
 
-wordgame('snails')
+}
+
+
+wordgame('hampers')
 
 results <- score_display()
 results$points()
@@ -193,6 +222,7 @@ results$word_count()
 results$percent_words()
 results$percent_points()
 results$words()
-shuffle()
-give_up()
+shuffle()     
 
+#give_up()
+#restart()
