@@ -69,21 +69,18 @@ score_display <- function(){
     points = function(){
       sum(df_score$points)
     },
-    words = function(){
-      cat(df_score$accepted_word, sep = '\n')
-      #print(df_score$accepted_word, n =)
+    words = function(sort = 'length'){
+      if (sort == 'length') cat(df_score$accepted_word, sep = '\n')
+      if (sort == 'alpha') cat(sort(df_score$accepted_word), sep = '\n')
     },
     word_count = function(){
       length(df_score$accepted_word)
-      #print(df_score$accepted_word, n =)
     },
     percent_words = function(){
       round(length(df_score$accepted_word)/length(df_derivatives$word) * 100, 1)
-      #print(df_score$accepted_word, n =)
     },
     percent_points = function(){
       round(sum(df_score$points) / sum(df_derivatives$points) * 100, 1)
-      #print(df_score$accepted_word, n =)
     }
   )
 }
@@ -175,7 +172,7 @@ wordgame <- function(x){
     pts <- df_derivatives$points[df_derivatives$word == x]
     score_keeper(x)
     if (isTRUE(df_derivatives$bonus[df_derivatives$word == x])){
-      print(paste0('Panagram! All seven letters - 2x bonus points! +', pts)) # panogram
+      print(paste0('Pangram! All seven letters - 2x bonus points! +', pts)) # panogram
     } else {
       print(paste0('yes! +', pts))
     }
@@ -210,11 +207,11 @@ restart <- function(){
     ungroup() 
   
   results <<- score_display()
-
+  shuffle()  
 }
 
 
-wordgame('')
+wordgame('deadheads')
 
 results <- score_display()
 results$points()
@@ -222,7 +219,8 @@ results$word_count()
 results$percent_words()
 results$percent_points()
 results$words()
-shuffle()     
+results$words(sort = 'alpha')
+shuffle()    
 
 #give_up()
 #restart()

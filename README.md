@@ -4,9 +4,10 @@ Find all words four letters or more from a group of seven letters
 
 ## Usage
 ```r
-# Display the 7 letters available. The first letter displayed does not shuffle and must be used:
+# Display the 7 letters available:
 shuffle()
 [1] "p" "s" "n" "i" "t" "e" "d"
+# The first letter displayed will always be the same and must be used at least once in each guess.
 
 # Refresh the order to help get new ideas:
 shuffle()
@@ -62,7 +63,10 @@ pits
 sped
 tips
 
-# Throw in the towel and print the words that you haven't guessed:
+# The default is to sort the results by character count, but they can be sorted alphabetically too:
+thresults$words(sort = 'alpha')
+
+# Throw in the towel and print the words that haven't been guessed:
 give_up()
 
 # Start a new game:
