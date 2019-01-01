@@ -64,7 +64,7 @@ sped
 tips
 
 # The default is to sort the results by character count, but they can be sorted alphabetically too:
-thresults$words(sort = 'alpha')
+results$words(sort = 'alpha')
 
 # Throw in the towel and print the words that haven't been guessed:
 give_up()
