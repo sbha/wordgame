@@ -46,15 +46,22 @@ ano_pointer <- function(x){
 }
 
 # score keeper
-df_score <- data_frame(accepted_word = as.character(),
-                       points = as.numeric(),
-                       chars = as.numeric())
+# df_score <- data_frame(accepted_word = as.character(),
+#                        points = as.numeric(),
+#                        chars = as.numeric())
+start_game <- function(){
+  df_score <<- dplyr::data_frame(accepted_word = as.character(),
+                                 points = as.numeric(),
+                                 chars = as.numeric())
+}
+
+start_game()
 
 
 score_keeper <- function(word){
   if (!word %in% df_score$accepted_word) {
     df_score <<- bind_rows(df_score, data_frame(accepted_word = word,
-                                                points = ano_pointer(word),
+                                                points = ano_pointer(word), # this doesn't get the correct points for pangrams
                                                 chars = nchar(word))) %>%
       arrange(desc(chars), accepted_word)
   }
@@ -153,11 +160,7 @@ df_words %>%
   mutate(guessed = FALSE) %>% 
   ungroup() 
   
-
-
-
-### Game play ###
-
+# Game play functions
 wordgame <- function(x){
   #if (!is.character(x)) stop('You must enter a word')
   x <- tolower(x)
@@ -211,8 +214,10 @@ restart <- function(){
 }
 
 
-wordgame('deadheads')
 
+### Game play ###
+
+start_game()
 results <- score_display()
 results$points()
 results$word_count()
@@ -222,5 +227,10 @@ results$words()
 results$words(sort = 'alpha')
 shuffle()    
 
+wordgame('seam')
+
 #give_up()
 #restart()
+
+
+
