@@ -1,9 +1,13 @@
 # Word Game
 ## Overview
-Find all words four letters or more from a group of seven letters
+Find words four letters or more from a group of seven letters
 
 ## Usage
 ```r
+# Start the game:
+start_game()
+results <- score_display()
+
 # Display the 7 letters available:
 shuffle()
 [1] "p" "s" "n" "i" "t" "e" "d"
