@@ -6,11 +6,8 @@ Find words four letters or more from a group of seven letters
 ```r
 # Start the game:
 start_game()
-results <- score_display()
+[1] "p" "t" "e" "n" "i" "d" "s" 
 
-# Display the 7 letters available:
-shuffle()
-[1] "p" "s" "n" "i" "t" "e" "d"
 # The first letter displayed will always be the same and must be used at least once in each guess.
 
 # Refresh the order to help get new ideas:
