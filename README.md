@@ -7,7 +7,6 @@ Find words four letters or more from a group of seven letters
 # Start the game:
 start_game()
 [1] "p" "t" "e" "n" "i" "d" "s" 
-
 # The first letter displayed will always be the same and must be used at least once in each guess.
 
 # Refresh the order to help get new ideas:
