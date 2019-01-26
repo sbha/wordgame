@@ -33,9 +33,7 @@ ano_pointer <- function(x){
 }
 
 
-
 # functions for gameplay
-
 # options for displaying current game play results
 score_display <- function(){
   list(
@@ -53,23 +51,21 @@ score_display <- function(){
       round(length(df_derivatives$word[df_derivatives$guessed == TRUE])/length(df_derivatives$word) * 100, 1)
     },
     percent_points = function(){
-      round(sum(df_derivatives$points[df_derivatives$guessed == TRUE]) / sum(df_derivatives$points) * 100, 1)
+      round(sum(df_derivatives$points[df_derivatives$guessed == TRUE])/sum(df_derivatives$points) * 100, 1)
     }
   )
 }
 
-
 # start new game
 start_game <- function(){
   results <<- score_display()
+  shuffle() 
 }
-
 
 # shuffle letters in the base word
 shuffle <- function(){
   ano_shuffler(word7, base_letter)
 }
-
 
 # print unguessed words
 # prompt
@@ -107,8 +103,6 @@ wordgame <- function(x){
 
 restart <- function(){
   # prompt are you sure
-  start_game()
-  
   word7 <<- df_words7$ano[sample(nrow(df_words7), 1)]
   
   word_non_vowel <<- str_remove_all(word7, '[[aeiouy]]')
@@ -127,7 +121,6 @@ restart <- function(){
     mutate(points = if_else(isTRUE(bonus), points * 2, points)) %>% 
     mutate(guessed = FALSE) %>% 
     ungroup() 
-  
-  results <<- score_display()
-  shuffle()  
+
+  start_game()
 }
