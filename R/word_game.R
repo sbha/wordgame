@@ -20,5 +20,6 @@ wordgame('')
 #give_up()
 #restart()
 
+# wg('')
 
 

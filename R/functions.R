@@ -101,6 +101,10 @@ wordgame <- function(x){
   }
 }
 
+wg <- function(x){
+  wordgame(x)
+}
+
 restart <- function(){
   # prompt are you sure
   word7 <<- df_words7$ano[sample(nrow(df_words7), 1)]
