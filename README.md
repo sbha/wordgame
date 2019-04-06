@@ -2,6 +2,8 @@
 ## Overview
 Find words four letters or more from a group of seven letters
 
+This exercise is also done using [Python](https://github.com/sbha/word_game.py).
+
 ## Usage
 ```r
 # Start the game:
