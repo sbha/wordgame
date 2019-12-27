@@ -9,16 +9,16 @@ This exercise is also done using [Python](https://github.com/sbha/word_game.py).
 # Start the game:
 start_game()
 [1] "p" "t" "e" "n" "i" "d" "s" 
-# The first letter displayed will always be the same and must be used at least once in each guess.
+# The first letter displayed will always be the same for a given group and must be used at least once in each guess.
 
 # Refresh the order to help get new ideas:
 shuffle()
 [1] "p" "t" "i" "d" "n" "e" "s"
 
-# When you have a word idea, test it to see if it works:
+# When you have a guess for a word, test it to see if it matches accepted answers:
 wordgame('insipid')
 [1] "yes! +4"
-# Four letter words are worth 1 point, and each additional letter is worth another point. 
+# Four letter words are worth 1 point, and each additional letter is worth an additional point. 
 
 # Non-words are not accepted:
 wordgame('sipid')
@@ -36,7 +36,7 @@ wordgame('present')
 wordgame('tied')
 [1] "Sorry, the word must contain the letter 'p'."
 
-# Succcessful entries are stored and can't be used again:
+# Succcessful guesses are stored and can't be used again:
 wordgame('insipid')
 [1] "Sorry, that word has already been used."
 
@@ -44,7 +44,7 @@ wordgame('insipid')
 wordgame('stipend')
 [1] "All seven letters - bonus! +8"
 
-# Successful entries are stored and points are tallied:
+# Successful guesses are stored and points are tallied:
 results$points()
 [1] 235
 results$word_count()
